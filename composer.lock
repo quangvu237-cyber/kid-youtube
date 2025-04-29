@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bec77fc8bfe524305a03a9b742c3c6d4",
+    "content-hash": "69e6e36a5118e4571493a0022f0e77c3",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -617,6 +617,80 @@
                 }
             ],
             "time": "2025-02-21T08:52:11+00:00"
+        },
+        {
+            "name": "datlechin/filament-menu-builder",
+            "version": "v0.6.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datlechin/filament-menu-builder.git",
+                "reference": "915255d93906166beeebfb335aab68fa2b0d11ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datlechin/filament-menu-builder/zipball/915255d93906166beeebfb335aab68fa2b0d11ff",
+                "reference": "915255d93906166beeebfb335aab68fa2b0d11ff",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^2.1",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "FilamentMenuBuilder": "Datlechin\\FilamentMenuBuilder\\Facades\\FilamentMenuBuilder"
+                    },
+                    "providers": [
+                        "Datlechin\\FilamentMenuBuilder\\FilamentMenuBuilderServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Datlechin\\FilamentMenuBuilder\\": "src/",
+                    "Datlechin\\FilamentMenuBuilder\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ngo Quoc Dat",
+                    "email": "datlechin@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Create and manage menus and menu items",
+            "homepage": "https://github.com/datlechin/filament-menu-builder",
+            "keywords": [
+                "datlechin",
+                "filament-menu-builder",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/datlechin/filament-menu-builder/issues",
+                "source": "https://github.com/datlechin/filament-menu-builder"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/datlechin",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-04-23T01:37:18+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
