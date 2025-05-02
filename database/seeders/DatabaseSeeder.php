@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         Admin::create([
-            'name' => 'House Dragonmaster',
+            'name' => 'House Dragonmaid',
             'email' => 'house@dragonmaid.com',
             'password' => Hash::make('a123456789X!'),
         ]);
