@@ -21,6 +21,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
+use Solutionforest\FilamentScaffold\FilamentScaffoldPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -61,6 +62,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentShieldPlugin::make(),
                 FilamentUsersPlugin::make(),
                 FilamentSettingsHubPlugin::make(),
+                FilamentScaffoldPlugin::make(),
                 FilamentEditProfilePlugin::make()
                 ->setIcon('heroicon-o-user')
                 ->shouldShowAvatarForm(
