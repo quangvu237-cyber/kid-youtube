@@ -20,6 +20,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
+use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -59,6 +60,7 @@ class AdminPanelProvider extends PanelProvider
             ])->plugins([
                 FilamentShieldPlugin::make(),
                 FilamentUsersPlugin::make(),
+                FilamentSettingsHubPlugin::make(),
                 FilamentEditProfilePlugin::make()
                 ->setIcon('heroicon-o-user')
                 ->shouldShowAvatarForm(
