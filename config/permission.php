@@ -199,13 +199,4 @@ return [
 
         'store' => 'default',
     ],
-
-    /*
-     * (CUSTOM) Guards you want to allow Spatie Permission to work with
-     */
-
-    'guards' => [
-        'web',    // for Users
-        'admin',  // for Admins
-    ],
 ];
