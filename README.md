@@ -128,6 +128,14 @@ This repository contains a Laravel 12 application configured to run with Docker.
   docker-compose exec app php artisan config:clear
   ```
 
+## Debug
+
+- Access Laravel Telescope:
+  ```bash
+  http://your-laravel-url:port/telescope
+  ```
+- Access Debugbar: Change "APP_DEBUG=true" in .env to activate.
+
 ## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
