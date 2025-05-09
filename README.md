@@ -136,6 +136,8 @@ This repository contains a Laravel 12 application configured to run with Docker.
   ```
 - Access Debugbar: Change "APP_DEBUG=true" in .env to activate.
 
+- When deploying to production, these two packages should be disabled to avoid impacting the application's performance and security.
+
 ## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
