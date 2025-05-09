@@ -112,9 +112,10 @@ This repository contains a Laravel 12 application configured to run with Docker.
 
 ## Docker Services
 
-- **laravel-app**: PHP Laravel application
-- **node-app**: PHP Laravel application
-- **nginx-laravel**: Web server
+- **laravel-boilerplate**: PHP Service
+- **node-boilerplate**: NodeJS Service
+- **redis-boilerplate**: Redis Service
+- **nginx-boilerplate**: Nginx Web Service
 
 ## Troubleshooting
 
