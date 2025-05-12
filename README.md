@@ -151,7 +151,7 @@ This repository contains a Laravel 12 application configured to run with Docker.
   ./vendor/bin/phpstan analyse --memory-limit=2G
   ```
 
-- When deploying to production, these two packages should be disabled to avoid impacting the application's performance and security.
+- When deploying to production, Telescope & Debugbar should be disabled to avoid impacting the application's performance and security.
 
 ## License
 
