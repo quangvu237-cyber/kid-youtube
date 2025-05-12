@@ -1,0 +1,19 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - app/
+        - database/
+        - routes/
+        - config/
+        - tests/
+    excludePaths:
+        - vendor/
+        - storage/
+        - bootstrap/cache/
+    bootstrapFiles:
+        - bootstrap/app.php
+    reportUnmatchedIgnoredErrors: false

@@ -47,6 +47,11 @@ This repository contains a Laravel 12 application configured to run with Docker.
 
 8. Access the application at http://localhost:8080
 
+9. Feature/Unit Test via Composer
+   ```bash
+   composer test
+   ```
+   
 ## Requirements (For Local)
 - [PHP v8.2.x (XAMPP)](https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/8.2.12/xampp-windows-x64-8.2.12-0-VS16-installer.exe/download) or [PHP v8.4.x (Laragon)](https://github.com/leokhoa/laragon/releases/download/8.0.0/laragon-wamp.exe)
 - [Composer](https://getcomposer.org/download/)
@@ -136,6 +141,15 @@ This repository contains a Laravel 12 application configured to run with Docker.
   http://your-laravel-url:port/telescope
   ```
 - Access Debugbar: Change "APP_DEBUG=true" in .env to activate.
+
+- Detect Bug Using Larastan:
+  ```bash
+  ./vendor/bin/phpstan analyse
+  ```
+  or if you are getting the error "Allowed memory size exhausted"
+  ```bash
+  ./vendor/bin/phpstan analyse --memory-limit=2G
+  ```
 
 - When deploying to production, these two packages should be disabled to avoid impacting the application's performance and security.
 
