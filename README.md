@@ -1,4 +1,4 @@
-# Laravel 12 Docker
+# Laravel 12 Boilerplate
 
 This repository contains a Laravel 12 application configured to run with Docker.
 
@@ -45,13 +45,13 @@ This repository contains a Laravel 12 application configured to run with Docker.
    docker-compose exec app php artisan migrate
    ```
 
-8. Access the application at http://localhost:8080
-
-9. Feature/Unit Test via Composer
+8. Feature/Unit Test via Composer
    ```bash
    composer test
    ```
-   
+
+9. Access the application at http://localhost:8080
+
 ## Requirements (For Local)
 - [PHP v8.2.x (XAMPP)](https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/8.2.12/xampp-windows-x64-8.2.12-0-VS16-installer.exe/download) or [PHP v8.4.x (Laragon)](https://github.com/leokhoa/laragon/releases/download/8.0.0/laragon-wamp.exe)
 - [Composer](https://getcomposer.org/download/)
