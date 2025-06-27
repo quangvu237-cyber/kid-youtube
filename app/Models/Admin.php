@@ -9,9 +9,10 @@ use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\HasAvatar;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Traits\HasRoles;
+use Filament\Panel;
+use Filament\Models\Contracts\FilamentUser;
 
-
-class Admin extends Authenticatable implements HasAvatar
+class Admin extends Authenticatable implements HasAvatar, FilamentUser
 {
     use HasFactory, Notifiable, HasRoles;
 
@@ -56,5 +57,15 @@ class Admin extends Authenticatable implements HasAvatar
     public function getFilamentAvatarUrl(): ?string
     {
         return $this->avatar_url ? Storage::disk('public')->url($this->avatar_url) : null;
+    }
+
+    // Fix 403 for Admin
+    public function canAccessPanel(Panel $panel): bool
+    {
+        if (config('app.env') === 'production') {
+            return str_ends_with($this->email, '@administrator.com') && $this->hasVerifiedEmail();
+        } else {
+            return true;
+        }
     }
 }

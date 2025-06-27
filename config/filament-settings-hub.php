@@ -4,7 +4,7 @@ return [
     'show_hint' => true,
 
     'upload' => [
-        'disk' => 'local',
+        'disk' => 'public',
         'directory' => 'public',
     ],
 ];

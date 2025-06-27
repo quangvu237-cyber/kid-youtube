@@ -60,16 +60,20 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])->plugins([
                 FilamentShieldPlugin::make(),
-                FilamentUsersPlugin::make(),
                 FilamentSettingsHubPlugin::make(),
-                FilamentScaffoldPlugin::make(),
+                ...(
+                    config('app.env') === 'local'
+                    ? [FilamentScaffoldPlugin::make()]
+                    : []
+                ),
+                FilamentUsersPlugin::make(),
                 FilamentEditProfilePlugin::make()
-                ->setIcon('heroicon-o-user')
-                ->shouldShowAvatarForm(
-                    value: true,
-                    directory: 'avatars',
-                    rules: 'mimes:jpeg,png|max:1024'
-                )
+                    ->setIcon('heroicon-o-user')
+                    ->shouldShowAvatarForm(
+                        value: true,
+                        directory: 'avatars',
+                        rules: 'mimes:jpeg,png|max:1024'
+                    ),
             ])->authGuard('admin');
     }
 }
