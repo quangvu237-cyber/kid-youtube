@@ -21,14 +21,14 @@ class AppServiceProvider extends ServiceProvider
                 $ignoreQuery[] = 'signature';
 
                 $absoluteUrl = url($request->path());
-                $url = $absolute ? $absoluteUrl : '/' . $request->path();
+                $url = $absolute ? $absoluteUrl : '/'.$request->path();
 
                 $queryString = collect(explode('&', (string) $request
                     ->server->get('QUERY_STRING')))
-                    ->reject(fn($parameter) => in_array(Str::before($parameter, '='), $ignoreQuery))
+                    ->reject(fn ($parameter) => in_array(Str::before($parameter, '='), $ignoreQuery))
                     ->join('&');
 
-                $original = rtrim($url . '?' . $queryString, '?');
+                $original = rtrim($url.'?'.$queryString, '?');
 
                 // Use the application key as the HMAC key
                 $key = config('app.key'); // Ensure app.key is properly set in .env
@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
                 }
 
                 $signature = hash_hmac('sha256', $original, $key);
+
                 return hash_equals($signature, (string) $request->query('signature', ''));
             }
         );
