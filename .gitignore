@@ -14,6 +14,7 @@
 Homestead.json
 Homestead.yaml
 npm-debug.log
+.bash_history
 yarn-error.log
 /auth.json
 /.fleet
@@ -21,3 +22,4 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/.composer
