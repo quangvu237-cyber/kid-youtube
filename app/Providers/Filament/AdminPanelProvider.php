@@ -77,7 +77,7 @@ class AdminPanelProvider extends PanelProvider
                     ),
                 TwoFactorAuthenticationPlugin::make()
                     ->enableTwoFactorAuthentication()
-                    ->addTwoFactorMenuItem()
+                    ->addTwoFactorMenuItem(),
             ])->authGuard('admin');
     }
 }
