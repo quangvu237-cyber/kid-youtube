@@ -14,6 +14,7 @@
         "joaopaulolndev/filament-edit-profile": "^1.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "outerweb/filament-settings": "^1.3",
         "solution-forest/filament-scaffold": "^0.0.9",
         "spatie/laravel-permission": "^6.17",
         "stephenjude/filament-two-factor-authentication": "^2.0",

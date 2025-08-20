@@ -19,6 +19,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
+use Outerweb\FilamentSettings\Filament\Plugins\FilamentSettingsPlugin;
 use Solutionforest\FilamentScaffold\FilamentScaffoldPlugin;
 use Stephenjude\FilamentTwoFactorAuthentication\TwoFactorAuthenticationPlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
@@ -76,6 +77,10 @@ class AdminPanelProvider extends PanelProvider
                 TwoFactorAuthenticationPlugin::make()
                     ->enableTwoFactorAuthentication()
                     ->addTwoFactorMenuItem(),
+                FilamentSettingsPlugin::make()
+                    ->pages([
+                        \App\Filament\Pages\Settings\Settings::class,
+                    ]),
             ])->authGuard('admin');
     }
 }
