@@ -122,6 +122,9 @@ This repository contains a Laravel 12 application configured to run with Docker.
 - **redis-boilerplate**: Redis Service
 - **nginx-boilerplate**: Nginx Web Service
 
+## Users Autentication instead of Admin?
+- You can install that Using [Laravel Breeze](https://laravel.com/docs/11.x/starter-kits) 
+
 ## Troubleshooting
 
 - If you encounter permission issues, run:
