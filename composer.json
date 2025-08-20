@@ -17,7 +17,6 @@
         "solution-forest/filament-scaffold": "^0.0.9",
         "spatie/laravel-permission": "^6.17",
         "stephenjude/filament-two-factor-authentication": "^2.0",
-        "tomatophp/filament-settings-hub": "^2.0",
         "tomatophp/filament-users": "^2.0"
     },
     "require-dev": {
