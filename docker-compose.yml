@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: docker/php/Dockerfile
     image: laravel-app
-    container_name: laravel-boilerplate
+    container_name: laravel-coinmarketcap
     volumes:
       - .:/var/www
     working_dir: /var/www
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: docker/node/Dockerfile
     image: node-app
-    container_name: node-boilerplate
+    container_name: node-coinmarketcap
     working_dir: /var/www
     volumes:
       - .:/var/www
@@ -31,7 +31,7 @@ services:
 
   redis:
     image: redis:alpine
-    container_name: redis-boilerplate
+    container_name: redis-coinmarketcap
     ports:
       - "6379:6379"
     networks:
@@ -39,7 +39,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: nginx-boilerplate
+    container_name: nginx-coinmarketcap
     ports:
       - "8080:80"
     volumes:
