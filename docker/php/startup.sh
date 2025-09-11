@@ -13,5 +13,15 @@ else
     echo "✅ Composer dependencies already exist, skipping installation"
 fi
 
+# Create storage link if it doesn't exist
+if [ ! -L "/var/www/public/storage" ]; then
+    echo "🔗 Creating storage symbolic link..."
+    cd /var/www
+    php artisan storage:link
+    echo "✅ Storage link created successfully!"
+else
+    echo "✅ Storage link already exists"
+fi
+
 # Start php-fpm or whatever command was passed
 exec "$@"
