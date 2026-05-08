@@ -160,6 +160,27 @@ This repository contains a Laravel 12 application configured to run with Docker.
 
 - When deploying to production, Telescope & Debugbar should be disabled to avoid impacting the application's performance and security.
 
+## Hot Reload (For Dev)
+
+Use the dev docker compose for development with hot reload enabled:
+
+```bash
+docker compose -f docker-compose-dev.yml up -d --build
+```
+
+**What's different:**
+- **PHP**: OPcache disabled → code changes reflect instantly without rebuild
+- **Node/Vite**: Runs `npm run dev` → HMR (Hot Module Replacement) for JS/CSS changes
+- **Nginx**: No read-only mount → serves latest files directly
+
+**Verify it's working:**
+```bash
+docker compose -f docker-compose-dev.yml ps
+docker compose -f docker-compose-dev.yml logs -f
+```
+
+Access at http://localhost:8080
+
 ## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
