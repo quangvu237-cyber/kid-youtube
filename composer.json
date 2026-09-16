@@ -10,6 +10,7 @@
         "amidesfahani/filament-tinyeditor": "^2.1",
         "bezhansalleh/filament-language-switch": "^3.1",
         "bezhansalleh/filament-shield": "^3.3",
+        "darkaonline/l5-swagger": "*",
         "filament/filament": "^3.3",
         "joaopaulolndev/filament-edit-profile": "^1.0",
         "laravel/framework": "^12.0",

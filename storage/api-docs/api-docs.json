@@ -1,0 +1,575 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Video API",
+        "description": "API quản lý video lấy từ link YouTube (trích xuất ID, lấy metadata qua YouTube Data API v3).",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/api",
+            "description": "Local API server"
+        }
+    ],
+    "paths": {
+        "/videos": {
+            "get": {
+                "tags": [
+                    "Videos"
+                ],
+                "summary": "Danh sách video phân trang",
+                "operationId": "ffff442ee780e643f8945f35e1ec710a",
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15,
+                            "maximum": 100,
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Video"
+                                            }
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer"
+                                                },
+                                                "last_page": {
+                                                    "type": "integer"
+                                                },
+                                                "per_page": {
+                                                    "type": "integer"
+                                                },
+                                                "total": {
+                                                    "type": "integer"
+                                                },
+                                                "from": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "to": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Videos"
+                ],
+                "summary": "Tạo video mới từ link YouTube (tự lấy metadata + statistics + comments)",
+                "operationId": "0bd57aa4b16e2165f62bf6bffb3d8e83",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "youtube_url"
+                                ],
+                                "properties": {
+                                    "youtube_url": {
+                                        "type": "string",
+                                        "format": "uri",
+                                        "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Tạo thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Video"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Dữ liệu không hợp lệ hoặc không trích được YouTube ID"
+                    }
+                }
+            }
+        },
+        "/videos/{id}": {
+            "get": {
+                "tags": [
+                    "Videos"
+                ],
+                "summary": "Chi tiết một video (đầy đủ metadata, statistics, embed_url)",
+                "operationId": "24a3afe0e802fd88f430f13500628416",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Video"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Không tìm thấy video"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Videos"
+                ],
+                "summary": "Cập nhật video",
+                "operationId": "a7f69c1f80e064bb91500865270dbdb0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "youtube_url": {
+                                        "type": "string",
+                                        "format": "uri",
+                                        "nullable": true
+                                    },
+                                    "youtube_id": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "channel": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "thumbnail": {
+                                        "type": "string",
+                                        "format": "uri",
+                                        "nullable": true
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "pending",
+                                            "completed",
+                                            "failed"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Video"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Không tìm thấy video"
+                    },
+                    "422": {
+                        "description": "Dữ liệu không hợp lệ"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Videos"
+                ],
+                "summary": "Xoá video",
+                "operationId": "28f860f33e116c30f55a56dd6e387c43",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Đã xoá",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Video đã được xoá."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Không tìm thấy video"
+                    }
+                }
+            }
+        },
+        "/videos/{id}/comments": {
+            "get": {
+                "tags": [
+                    "Videos"
+                ],
+                "summary": "Danh sách bình luận (top-level) kèm replies của video",
+                "operationId": "94a61682e2bff7769dabd21a1bca3c96",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 20,
+                            "maximum": 100,
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/VideoComment"
+                                            }
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer"
+                                                },
+                                                "last_page": {
+                                                    "type": "integer"
+                                                },
+                                                "per_page": {
+                                                    "type": "integer"
+                                                },
+                                                "total": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Không tìm thấy video"
+                    }
+                }
+            }
+        },
+        "/videos/{id}/refresh": {
+            "post": {
+                "tags": [
+                    "Videos"
+                ],
+                "summary": "Làm mới metadata, statistics và comments của video từ YouTube Data API",
+                "operationId": "9a11477ba6de33089fd255bda55ac0d8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Đã làm mới",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Video"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Không tìm thấy video"
+                    },
+                    "422": {
+                        "description": "Không thể làm mới"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "VideoComment": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "youtube_comment_id": {
+                        "type": "string"
+                    },
+                    "author_name": {
+                        "type": "string",
+                        "example": "Người xem"
+                    },
+                    "author_avatar": {
+                        "type": "string",
+                        "format": "uri",
+                        "nullable": true
+                    },
+                    "text": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "like_count": {
+                        "type": "integer",
+                        "example": 12
+                    },
+                    "published_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "replies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/VideoComment"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Video": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "youtube_id": {
+                        "type": "string",
+                        "example": "dQw4w9WgXcQ"
+                    },
+                    "youtube_url": {
+                        "type": "string",
+                        "format": "uri",
+                        "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Rick Astley - Never Gonna Give You Up",
+                        "nullable": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "thumbnail": {
+                        "type": "string",
+                        "format": "uri",
+                        "nullable": true
+                    },
+                    "published_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "channel": {
+                        "type": "string",
+                        "example": "Rick Astley",
+                        "nullable": true
+                    },
+                    "channel_id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "channel_avatar": {
+                        "type": "string",
+                        "format": "uri",
+                        "nullable": true
+                    },
+                    "channel_subscriber_count": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "view_count": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "like_count": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "comment_count": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "duration": {
+                        "type": "string",
+                        "example": "3:33",
+                        "nullable": true
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "nullable": true
+                    },
+                    "category_id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "category_name": {
+                        "type": "string",
+                        "example": "Music",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "completed",
+                        "enum": [
+                            "pending",
+                            "completed",
+                            "failed"
+                        ]
+                    },
+                    "comments_count": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "embed_url": {
+                        "type": "string",
+                        "format": "uri",
+                        "example": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Videos",
+            "description": "Quản lý video YouTube"
+        }
+    ]
+}

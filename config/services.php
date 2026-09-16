@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'youtube' => [
+        'api_key' => env('YOUTUBE_API_KEY'),
+        'data_api_base_url' => env('YOUTUBE_DATA_API_BASE_URL', 'https://www.googleapis.com/youtube/v3'),
+    ],
+
 ];
