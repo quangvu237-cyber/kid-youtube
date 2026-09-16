@@ -1,3 +1,7 @@
 [phases.setup]
 nixPkgs = ["php82", "php82-extensions", "composer"]
-phpPkgs = ["intl", "mbstring", "openssl", "pdo", "sqlite3", "bcmath"]
+
+[phases.build]
+cmds = [
+    "composer install --no-dev --optimize-autoloader"
+]
