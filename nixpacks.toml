@@ -1,8 +1,31 @@
 [phases.setup]
-nixPkgs = ["php81", "php81-extensions", "composer"]
-phpPkgs = ["intl", "zip", "mbstring", "openssl", "pdo", "sqlite3", "bcmath"]
+nixPkgs = [
+  "php83",
+  "php83Extensions.intl",
+  "php83Extensions.zip",
+  "php83Extensions.mbstring",
+  "php83Extensions.openssl",
+  "php83Extensions.tokenizer",
+  "php83Extensions.ctype",
+  "php83Extensions.pdo",
+  "php83Extensions.pdo_sqlite",
+  "php83Extensions.sqlite3",
+  "php83Extensions.bcmath",
+  "php83Extensions.curl",
+  "php83Extensions.dom",
+  "php83Extensions.xml",
+  "php83Extensions.fileinfo",
+  "php83Extensions.gd",
+  "php83Extensions.pcntl",
+  "php83Extensions.redis",
+  "composer",
+]
 
 [phases.build]
 cmds = [
-    "composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip"
+  "composer install --no-dev --optimize-autoloader",
+  "php artisan storage:link --force",
 ]
+
+[start]
+cmd = "php artisan migrate --force --no-interaction || true; php artisan serve --host=0.0.0.0 --port=${PORT:-80}"
