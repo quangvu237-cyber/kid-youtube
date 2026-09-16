@@ -1,5 +1,6 @@
 [phases.setup]
-nixPkgs = ["php82", "php82-extensions", "composer"]
+nixPkgs = ["php81", "php81-extensions", "composer"]
+phpPkgs = ["intl", "zip", "mbstring", "openssl", "pdo", "sqlite3", "bcmath"]
 
 [phases.build]
 cmds = [
