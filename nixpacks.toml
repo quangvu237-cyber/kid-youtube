@@ -4,5 +4,5 @@ phpPkgs = ["intl", "zip", "mbstring", "openssl", "pdo", "sqlite3", "bcmath"]
 
 [phases.build]
 cmds = [
-    "composer install --no-dev --optimize-autoloader"
+    "composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip"
 ]
